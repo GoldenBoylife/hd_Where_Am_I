@@ -1,7 +1,9 @@
 <launch>
     <!-- ## Map Server Node -->
-    <arg name="map_file" default="$(find my_robot)/maps/room1.yaml"/>
+    <!-- <arg name="map_file" default="$(find my_robot)/maps/room1.yaml"/> -->
+    <arg name="map_file" default="$(find my_robot)/maps/map_ascii.yaml"/>
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+    <!-- map data를 서비스방식으로  amcl 노드에  전달함 -->
 
     <!-- ## Amcl Node : robot의 localization 정보 제공-->
     <node name="amcl" pkg="amcl" type="amcl" output="screen">
@@ -9,6 +11,12 @@
         <!-- scan 토픽을 다른 이름으로 바꾼다. -->
 
         <!-- amcl에서 쓰일 param -->
+    
+        <param name="min_particles" value="25"/>
+        <param name="max_particles" value="5000"/>
+        <param name="update_min_a" value="0.05"/>
+        <param name="update_min_d" value="0.0314"/>
+
         <param name="odom_frame_id" value="odom"/>
         <param name="odom_model_type" value="diff-corrected"/>
         <param name="base_frme_id" value="robot_footprint"/>
@@ -17,9 +25,19 @@
         <!-- robot의 초기 위치 -->
         <param name="initial_pose_x" value="0"/>
         <param name="initial_pose_y" value="0"/>
+        <param name="initial_pose_a" value="-1.5707"/>
+    </node>
+
 
     <!-- Mobe_base Node -->
-        <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
-
+    <node name="move_base" pkg="move_base" type="move_base" respawn="false" output="screen">
+        <param name="base_global_planner" value="navfn/NavfnROS" />
+        <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+        
+        <rosparam file="$(find my_robot)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find my_robot)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find my_robot)/config/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find my_robot)/config/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find my_robot)/config/base_local_planner_params.yaml" command="load" />
     </node>
 </launch>
