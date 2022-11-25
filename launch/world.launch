@@ -22,7 +22,7 @@
 
   <!-- gazebo 패키지 include와 각종 인수들 정의-->
   <!-- <include file="$(find gazebo_ros)/launch/empty_world.launch"> -->
-    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="use_sim_time" value="true"/>
     <arg name="debug" value="false"/>
     <arg name="gui" value="true" />
@@ -41,6 +41,7 @@
 
 
 <!--launch rviz-->
-<node name="rviz" pkg="rviz" type="rviz" respawn="false"/>
+<node name="rviz" pkg="rviz" type="rviz" respawn="false"
+	args="-d $(find my_robot)/rviz/default.rviz"/>
 
 </launch>
