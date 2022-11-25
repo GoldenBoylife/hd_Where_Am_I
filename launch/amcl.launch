@@ -1,7 +1,7 @@
 <launch>
     <!-- ## Map Server Node -->
     <!-- <arg name="map_file" default="$(find my_robot)/maps/room1.yaml"/> -->
-    <arg name="map_file" default="$(find my_robot)/maps/map_ascii.yaml"/>
+    <arg name="map_file" default="$(find my_robot)/maps/room1.yaml"/>
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
     <!-- map data를 서비스방식으로  amcl 노드에  전달함 -->
 
