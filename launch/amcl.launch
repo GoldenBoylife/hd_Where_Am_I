@@ -7,8 +7,8 @@
 
     <!-- ## Amcl Node : robot의 localization 정보 제공-->
     <node name="amcl" pkg="amcl" type="amcl" output="screen">
-        <remap from="scan" to="my_robot/laser/scan"/>
-        <!-- scan 토픽을 다른 이름으로 바꾼다. -->
+        <!-- <remap from="scan" to="my_robot/laser/scan"/> -->
+        <!-- scan 토픽을 다른 이름으로 바꾼다. RoboND패키지에서는 이거 안함. -->
 
         <!-- amcl에서 쓰일 param -->
     
@@ -19,7 +19,7 @@
 
         <param name="odom_frame_id" value="odom"/>
         <param name="odom_model_type" value="diff-corrected"/>
-        <param name="base_frme_id" value="robot_footprint"/>
+        <param name="base_frame_id" value="robot_footprint"/>
         <param name="global_frame_id" value="map"/>
 
         <!-- robot의 초기 위치 -->

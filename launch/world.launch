@@ -2,7 +2,7 @@
 
 <launch>
 
-  <!--world상에서  Robot pose 정의-->
+  <!--gazebo world상에서  Robot pose 정의-->
   <arg name="x" default="0"/>
   <arg name="y" default="0"/>
   <arg name="z" default="0"/>
@@ -17,7 +17,7 @@
   <!-- <arg name="world_file" default="$(find my_robot)/worlds/empty.world"/> -->
   <!-- <arg name="world_file" default="$(find my_robot)/worlds/building1.world"/> -->
   <!-- <arg name="world_file" default="$(find my_robot)/worlds/build3.world"/> -->
-  <arg name="world_file" default="$(find my_robot)/worlds/room1/room1.world"/>
+  <arg name="world_file" default="$(find my_robot)/worlds/room1.world"/>
   <!-- <arg name="world_file" default="$(find my_robot)/worlds/office.world"/> -->
 
   <!-- gazebo 패키지 include와 각종 인수들 정의-->
